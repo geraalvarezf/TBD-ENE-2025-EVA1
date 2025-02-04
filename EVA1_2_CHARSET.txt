@@ -1,0 +1,352 @@
+Last login: Tue Feb  4 16:30:29 on ttys002
+/Users/Gerardo/.zprofile:2: no such file or directory: /opt/homebrew/bin/brew
+Gerardo@luiss-mac ~ % mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 18
+Server version: 9.1.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> \sql
+--------------
+mysql  Ver 9.1.0 for macos14 on arm64 (MySQL Community Server - GPL)
+
+Connection id:		18
+Current database:	
+Current user:		root@localhost
+SSL:			Not in use
+Current pager:		stdout
+Using outfile:		''
+Using delimiter:	;
+Server version:		9.1.0 MySQL Community Server - GPL
+Protocol version:	10
+Connection:		Localhost via UNIX socket
+Server characterset:	utf8mb4
+Db     characterset:	utf8mb4
+Client characterset:	utf8mb4
+Conn.  characterset:	utf8mb4
+UNIX socket:		/tmp/mysql.sock
+Binary data as:		Hexadecimal
+Uptime:			1 day 3 hours 59 min 34 sec
+
+Threads: 2  Questions: 742  Slow queries: 0  Opens: 702  Flush tables: 3  Open tables: 623  Queries per second avg: 0.007
+--------------
+
+    -> \connect --mc root@localhost
+    -> 
+    -> \c
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.03 sec)
+
+mysql> use sys;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-----------------------------------------------+
+| Tables_in_sys                                 |
++-----------------------------------------------+
+| host_summary                                  |
+| host_summary_by_file_io                       |
+| host_summary_by_file_io_type                  |
+| host_summary_by_stages                        |
+| host_summary_by_statement_latency             |
+| host_summary_by_statement_type                |
+| innodb_buffer_stats_by_schema                 |
+| innodb_buffer_stats_by_table                  |
+| innodb_lock_waits                             |
+| io_by_thread_by_latency                       |
+| io_global_by_file_by_bytes                    |
+| io_global_by_file_by_latency                  |
+| io_global_by_wait_by_bytes                    |
+| io_global_by_wait_by_latency                  |
+| latest_file_io                                |
+| memory_by_host_by_current_bytes               |
+| memory_by_thread_by_current_bytes             |
+| memory_by_user_by_current_bytes               |
+| memory_global_by_current_bytes                |
+| memory_global_total                           |
+| metrics                                       |
+| processlist                                   |
+| ps_check_lost_instrumentation                 |
+| schema_auto_increment_columns                 |
+| schema_index_statistics                       |
+| schema_object_overview                        |
+| schema_redundant_indexes                      |
+| schema_table_lock_waits                       |
+| schema_table_statistics                       |
+| schema_table_statistics_with_buffer           |
+| schema_tables_with_full_table_scans           |
+| schema_unused_indexes                         |
+| session                                       |
+| session_ssl_status                            |
+| statement_analysis                            |
+| statements_with_errors_or_warnings            |
+| statements_with_full_table_scans              |
+| statements_with_runtimes_in_95th_percentile   |
+| statements_with_sorting                       |
+| statements_with_temp_tables                   |
+| sys_config                                    |
+| user_summary                                  |
+| user_summary_by_file_io                       |
+| user_summary_by_file_io_type                  |
+| user_summary_by_stages                        |
+| user_summary_by_statement_latency             |
+| user_summary_by_statement_type                |
+| version                                       |
+| wait_classes_global_by_avg_latency            |
+| wait_classes_global_by_latency                |
+| waits_by_host_by_latency                      |
+| waits_by_user_by_latency                      |
+| waits_global_by_latency                       |
+| x$host_summary                                |
+| x$host_summary_by_file_io                     |
+| x$host_summary_by_file_io_type                |
+| x$host_summary_by_stages                      |
+| x$host_summary_by_statement_latency           |
+| x$host_summary_by_statement_type              |
+| x$innodb_buffer_stats_by_schema               |
+| x$innodb_buffer_stats_by_table                |
+| x$innodb_lock_waits                           |
+| x$io_by_thread_by_latency                     |
+| x$io_global_by_file_by_bytes                  |
+| x$io_global_by_file_by_latency                |
+| x$io_global_by_wait_by_bytes                  |
+| x$io_global_by_wait_by_latency                |
+| x$latest_file_io                              |
+| x$memory_by_host_by_current_bytes             |
+| x$memory_by_thread_by_current_bytes           |
+| x$memory_by_user_by_current_bytes             |
+| x$memory_global_by_current_bytes              |
+| x$memory_global_total                         |
+| x$processlist                                 |
+| x$ps_digest_95th_percentile_by_avg_us         |
+| x$ps_digest_avg_latency_distribution          |
+| x$ps_schema_table_statistics_io               |
+| x$schema_flattened_keys                       |
+| x$schema_index_statistics                     |
+| x$schema_table_lock_waits                     |
+| x$schema_table_statistics                     |
+| x$schema_table_statistics_with_buffer         |
+| x$schema_tables_with_full_table_scans         |
+| x$session                                     |
+| x$statement_analysis                          |
+| x$statements_with_errors_or_warnings          |
+| x$statements_with_full_table_scans            |
+| x$statements_with_runtimes_in_95th_percentile |
+| x$statements_with_sorting                     |
+| x$statements_with_temp_tables                 |
+| x$user_summary                                |
+| x$user_summary_by_file_io                     |
+| x$user_summary_by_file_io_type                |
+| x$user_summary_by_stages                      |
+| x$user_summary_by_statement_latency           |
+| x$user_summary_by_statement_type              |
+| x$wait_classes_global_by_avg_latency          |
+| x$wait_classes_global_by_latency              |
+| x$waits_by_host_by_latency                    |
+| x$waits_by_user_by_latency                    |
+| x$waits_global_by_latency                     |
++-----------------------------------------------+
+101 rows in set (0.00 sec)
+
+mysql> create database tbd_eva1
+    -> show databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'show databases' at line 2
+mysql> \h
+
+For information about MySQL products and services, visit:
+   http://www.mysql.com/
+For developer information, including the MySQL Reference Manual, visit:
+   http://dev.mysql.com/
+To buy MySQL Enterprise support, training, or other products, visit:
+   https://shop.mysql.com/
+
+List of all MySQL commands:
+Note that all text commands must be first on line and end with ';'
+?         (\?) Synonym for `help'.
+clear     (\c) Clear the current input statement.
+connect   (\r) Reconnect to the server. Optional arguments are db and host.
+delimiter (\d) Set statement delimiter.
+edit      (\e) Edit command with $EDITOR.
+ego       (\G) Send command to mysql server, display result vertically.
+exit      (\q) Exit mysql. Same as quit.
+go        (\g) Send command to mysql server.
+help      (\h) Display this help.
+nopager   (\n) Disable pager, print to stdout.
+notee     (\t) Don't write into outfile.
+pager     (\P) Set PAGER [to_pager]. Print the query results via PAGER.
+print     (\p) Print current command.
+prompt    (\R) Change your mysql prompt.
+quit      (\q) Quit mysql.
+rehash    (\#) Rebuild completion hash.
+source    (\.) Execute an SQL script file. Takes a file name as an argument.
+status    (\s) Get status information from the server.
+system    (\!) Execute a system shell command, if enabled
+tee       (\T) Set outfile [to_outfile]. Append everything into given outfile.
+use       (\u) Use another database. Takes database name as argument.
+charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.
+warnings  (\W) Show warnings after every statement.
+nowarning (\w) Don't show warnings after every statement.
+resetconnection(\x) Clean session context.
+query_attributes Sets string parameters (name1 value1 name2 value2 ...) for the next query to pick up.
+ssl_session_data_print Serializes the current SSL session data to stdout or file
+
+For server side help, type 'help contents'
+
+mysql> \r
+Connection id:    19
+Current database: sys
+
+mysql> \sql
+--------------
+mysql  Ver 9.1.0 for macos14 on arm64 (MySQL Community Server - GPL)
+
+Connection id:		19
+Current database:	sys
+Current user:		root@localhost
+SSL:			Not in use
+Current pager:		stdout
+Using outfile:		''
+Using delimiter:	;
+Server version:		9.1.0 MySQL Community Server - GPL
+Protocol version:	10
+Connection:		Localhost via UNIX socket
+Server characterset:	utf8mb4
+Db     characterset:	utf8mb4
+Client characterset:	utf8mb4
+Conn.  characterset:	utf8mb4
+UNIX socket:		/tmp/mysql.sock
+Binary data as:		Hexadecimal
+Uptime:			1 day 4 hours 14 min 6 sec
+
+Threads: 2  Questions: 854  Slow queries: 0  Opens: 793  Flush tables: 3  Open tables: 714  Queries per second avg: 0.008
+--------------
+
+    -> create database tbd_eva1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ql
+create database tbd_eva1' at line 1
+mysql> create database tbd_eva1;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| tbd_eva1           |
++--------------------+
+5 rows in set (0.02 sec)
+
+mysql> use tbd_eva1
+Database changed
+mysql> show tables
+    -> ;
+Empty set (0.00 sec)
+
+mysql> show character ste;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ste' at line 1
+mysql> show char set;
++----------+---------------------------------+---------------------+--------+
+| Charset  | Description                     | Default collation   | Maxlen |
++----------+---------------------------------+---------------------+--------+
+| armscii8 | ARMSCII-8 Armenian              | armscii8_general_ci |      1 |
+| ascii    | US ASCII                        | ascii_general_ci    |      1 |
+| big5     | Big5 Traditional Chinese        | big5_chinese_ci     |      2 |
+| binary   | Binary pseudo charset           | binary              |      1 |
+| cp1250   | Windows Central European        | cp1250_general_ci   |      1 |
+| cp1251   | Windows Cyrillic                | cp1251_general_ci   |      1 |
+| cp1256   | Windows Arabic                  | cp1256_general_ci   |      1 |
+| cp1257   | Windows Baltic                  | cp1257_general_ci   |      1 |
+| cp850    | DOS West European               | cp850_general_ci    |      1 |
+| cp852    | DOS Central European            | cp852_general_ci    |      1 |
+| cp866    | DOS Russian                     | cp866_general_ci    |      1 |
+| cp932    | SJIS for Windows Japanese       | cp932_japanese_ci   |      2 |
+| dec8     | DEC West European               | dec8_swedish_ci     |      1 |
+| eucjpms  | UJIS for Windows Japanese       | eucjpms_japanese_ci |      3 |
+| euckr    | EUC-KR Korean                   | euckr_korean_ci     |      2 |
+| gb18030  | China National Standard GB18030 | gb18030_chinese_ci  |      4 |
+| gb2312   | GB2312 Simplified Chinese       | gb2312_chinese_ci   |      2 |
+| gbk      | GBK Simplified Chinese          | gbk_chinese_ci      |      2 |
+| geostd8  | GEOSTD8 Georgian                | geostd8_general_ci  |      1 |
+| greek    | ISO 8859-7 Greek                | greek_general_ci    |      1 |
+| hebrew   | ISO 8859-8 Hebrew               | hebrew_general_ci   |      1 |
+| hp8      | HP West European                | hp8_english_ci      |      1 |
+| keybcs2  | DOS Kamenicky Czech-Slovak      | keybcs2_general_ci  |      1 |
+| koi8r    | KOI8-R Relcom Russian           | koi8r_general_ci    |      1 |
+| koi8u    | KOI8-U Ukrainian                | koi8u_general_ci    |      1 |
+| latin1   | cp1252 West European            | latin1_swedish_ci   |      1 |
+| latin2   | ISO 8859-2 Central European     | latin2_general_ci   |      1 |
+| latin5   | ISO 8859-9 Turkish              | latin5_turkish_ci   |      1 |
+| latin7   | ISO 8859-13 Baltic              | latin7_general_ci   |      1 |
+| macce    | Mac Central European            | macce_general_ci    |      1 |
+| macroman | Mac West European               | macroman_general_ci |      1 |
+| sjis     | Shift-JIS Japanese              | sjis_japanese_ci    |      2 |
+| swe7     | 7bit Swedish                    | swe7_swedish_ci     |      1 |
+| tis620   | TIS620 Thai                     | tis620_thai_ci      |      1 |
+| ucs2     | UCS-2 Unicode                   | ucs2_general_ci     |      2 |
+| ujis     | EUC-JP Japanese                 | ujis_japanese_ci    |      3 |
+| utf16    | UTF-16 Unicode                  | utf16_general_ci    |      4 |
+| utf16le  | UTF-16LE Unicode                | utf16le_general_ci  |      4 |
+| utf32    | UTF-32 Unicode                  | utf32_general_ci    |      4 |
+| utf8mb3  | UTF-8 Unicode                   | utf8mb3_general_ci  |      3 |
+| utf8mb4  | UTF-8 Unicode                   | utf8mb4_0900_ai_ci  |      4 |
++----------+---------------------------------+---------------------+--------+
+41 rows in set (0.04 sec)
+
+mysql> show collation where charset = "utf8" ;
+Empty set (0.01 sec)
+
+mysql> show collation where charset = "utf16" ;
++----------------------+---------+-----+---------+----------+---------+---------------+
+| Collation            | Charset | Id  | Default | Compiled | Sortlen | Pad_attribute |
++----------------------+---------+-----+---------+----------+---------+---------------+
+| utf16_bin            | utf16   |  55 |         | Yes      |       1 | PAD SPACE     |
+| utf16_croatian_ci    | utf16   | 122 |         | Yes      |       8 | PAD SPACE     |
+| utf16_czech_ci       | utf16   | 111 |         | Yes      |       8 | PAD SPACE     |
+| utf16_danish_ci      | utf16   | 112 |         | Yes      |       8 | PAD SPACE     |
+| utf16_esperanto_ci   | utf16   | 118 |         | Yes      |       8 | PAD SPACE     |
+| utf16_estonian_ci    | utf16   | 107 |         | Yes      |       8 | PAD SPACE     |
+| utf16_general_ci     | utf16   |  54 | Yes     | Yes      |       1 | PAD SPACE     |
+| utf16_german2_ci     | utf16   | 121 |         | Yes      |       8 | PAD SPACE     |
+| utf16_hungarian_ci   | utf16   | 119 |         | Yes      |       8 | PAD SPACE     |
+| utf16_icelandic_ci   | utf16   | 102 |         | Yes      |       8 | PAD SPACE     |
+| utf16_latvian_ci     | utf16   | 103 |         | Yes      |       8 | PAD SPACE     |
+| utf16_lithuanian_ci  | utf16   | 113 |         | Yes      |       8 | PAD SPACE     |
+| utf16_persian_ci     | utf16   | 117 |         | Yes      |       8 | PAD SPACE     |
+| utf16_polish_ci      | utf16   | 106 |         | Yes      |       8 | PAD SPACE     |
+| utf16_romanian_ci    | utf16   | 104 |         | Yes      |       8 | PAD SPACE     |
+| utf16_roman_ci       | utf16   | 116 |         | Yes      |       8 | PAD SPACE     |
+| utf16_sinhala_ci     | utf16   | 120 |         | Yes      |       8 | PAD SPACE     |
+| utf16_slovak_ci      | utf16   | 114 |         | Yes      |       8 | PAD SPACE     |
+| utf16_slovenian_ci   | utf16   | 105 |         | Yes      |       8 | PAD SPACE     |
+| utf16_spanish2_ci    | utf16   | 115 |         | Yes      |       8 | PAD SPACE     |
+| utf16_spanish_ci     | utf16   | 108 |         | Yes      |       8 | PAD SPACE     |
+| utf16_swedish_ci     | utf16   | 109 |         | Yes      |       8 | PAD SPACE     |
+| utf16_turkish_ci     | utf16   | 110 |         | Yes      |       8 | PAD SPACE     |
+| utf16_unicode_520_ci | utf16   | 123 |         | Yes      |       8 | PAD SPACE     |
+| utf16_unicode_ci     | utf16   | 101 |         | Yes      |       8 | PAD SPACE     |
+| utf16_vietnamese_ci  | utf16   | 124 |         | Yes      |       8 | PAD SPACE     |
++----------------------+---------+-----+---------+----------+---------+---------------+
+26 rows in set (0.06 sec)
+
+mysql> 
