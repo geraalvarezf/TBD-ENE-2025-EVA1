@@ -1,0 +1,187 @@
+Last login: Fri Feb  7 13:49:38 on ttys001
+Gerardo@luiss-mac ~ % mysqlsh                                     
+MySQL Shell 9.2.0
+
+Copyright (c) 2016, 2025, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  SQL >  \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 11
+Server version: 9.1.0 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| tbd_eva1           |
++--------------------+
+5 rows in set (0.0046 sec)
+ MySQL  localhost  SQL > use tbd_eva1
+Default schema set to `tbd_eva1`.
+Fetching global names, object names from `tbd_eva1` for auto-completion... Press ^C to stop.
+ MySQL  localhost  tbd_eva1  SQL > use tbd_eva1;
+Default schema set to `tbd_eva1`.
+Fetching global names, object names from `tbd_eva1` for auto-completion... Press ^C to stop.
+ MySQL  localhost  tbd_eva1  SQL > show tables;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| persona            |
++--------------------+
+1 row in set (0.0020 sec)
+ MySQL  localhost  tbd_eva1  SQL > create table vehiculo(
+                                -> marca
+                                ->  varchar(20),
+                                -> modelo varchar(30),
+                                -> year int,
+                                -> color varchar(20),
+                                -> no_serie varchar(17));
+Query OK, 0 rows affected (0.1039 sec)
+ MySQL  localhost  tbd_eva1  SQL > desc vehiculo;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| marca    | varchar(20) | YES  |     | NULL    |       |
+| modelo   | varchar(30) | YES  |     | NULL    |       |
+| year     | int         | YES  |     | NULL    |       |
+| color    | varchar(20) | YES  |     | NULL    |       |
+| no_serie | varchar(17) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.0231 sec)
+ MySQL  localhost  tbd_eva1  SQL > show create table vehiculo;
++----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table    | Create Table                                                                                                                                                                                                                                                               |
++----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| vehiculo | CREATE TABLE `vehiculo` (
+  `marca` varchar(20) DEFAULT NULL,
+  `modelo` varchar(30) DEFAULT NULL,
+  `year` int DEFAULT NULL,
+  `color` varchar(20) DEFAULT NULL,
+  `no_serie` varchar(17) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.0140 sec)
+ MySQL  localhost  tbd_eva1  SQL > show tables;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| persona            |
+| vehiculo           |
++--------------------+
+2 rows in set (0.0086 sec)
+ MySQL  localhost  tbd_eva1  SQL > desc vehiculo;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| marca    | varchar(20) | YES  |     | NULL    |       |
+| modelo   | varchar(30) | YES  |     | NULL    |       |
+| year     | int         | YES  |     | NULL    |       |
+| color    | varchar(20) | YES  |     | NULL    |       |
+| no_serie | varchar(17) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.0468 sec)
+ MySQL  localhost  tbd_eva1  SQL > insert into vehiculo
+                                -> value("Ford", "Mustang", 1970, "Azul","ASDFASD");
+Query OK, 1 row affected (0.0144 sec)
+ MySQL  localhost  tbd_eva1  SQL > insert into vehiculo(marca, modelo)
+                                -> value("Chevrolet","Corvette");
+Query OK, 1 row affected (0.0627 sec)
+ MySQL  localhost  tbd_eva1  SQL > insert into vehiculo(marca, modelo)
+                                -> values("Tesla","S"),("Tesla","E"),("Tesla","X"),("Tesla","Y"),("Tesla", "Cybertuck");
+Query OK, 5 rows affected (0.0133 sec)
+
+Records: 5  Duplicates: 0  Warnings: 0
+ MySQL  localhost  tbd_eva1  SQL > Select * from vehciulo;
+ERROR: 1146 (42S02): Table 'tbd_eva1.vehciulo' doesn't exist
+ MySQL  localhost  tbd_eva1  SQL > select * from vehiculo;
++-----------+-----------+------+-------+----------+
+| marca     | modelo    | year | color | no_serie |
++-----------+-----------+------+-------+----------+
+| Ford      | Mustang   | 1970 | Azul  | ASDFASD  |
+| Chevrolet | Corvette  | NULL | NULL  | NULL     |
+| Tesla     | S         | NULL | NULL  | NULL     |
+| Tesla     | E         | NULL | NULL  | NULL     |
+| Tesla     | X         | NULL | NULL  | NULL     |
+| Tesla     | Y         | NULL | NULL  | NULL     |
+| Tesla     | Cybertuck | NULL | NULL  | NULL     |
++-----------+-----------+------+-------+----------+
+7 rows in set (0.0105 sec)
+ MySQL  localhost  tbd_eva1  SQL > insert into vehiculo(marca, modelo) value("Tesla","S");
+Query OK, 1 row affected (0.0163 sec)
+ MySQL  localhost  tbd_eva1  SQL > select * from vehiculo;
++-----------+-----------+------+-------+----------+
+| marca     | modelo    | year | color | no_serie |
++-----------+-----------+------+-------+----------+
+| Ford      | Mustang   | 1970 | Azul  | ASDFASD  |
+| Chevrolet | Corvette  | NULL | NULL  | NULL     |
+| Tesla     | S         | NULL | NULL  | NULL     |
+| Tesla     | E         | NULL | NULL  | NULL     |
+| Tesla     | X         | NULL | NULL  | NULL     |
+| Tesla     | Y         | NULL | NULL  | NULL     |
+| Tesla     | Cybertuck | NULL | NULL  | NULL     |
+| Tesla     | S         | NULL | NULL  | NULL     |
++-----------+-----------+------+-------+----------+
+8 rows in set (0.0007 sec)
+ MySQL  localhost  tbd_eva1  SQL > select count(*) from vehiculo;
++----------+
+| count(*) |
++----------+
+|        8 |
++----------+
+1 row in set (0.0371 sec)
+ MySQL  localhost  tbd_eva1  SQL > insert into vehiculo
+                                -> value(null,null,null,null,null);
+Query OK, 1 row affected (0.0366 sec)
+ MySQL  localhost  tbd_eva1  SQL > select * from vehiculo;
++-----------+-----------+------+-------+----------+
+| marca     | modelo    | year | color | no_serie |
++-----------+-----------+------+-------+----------+
+| Ford      | Mustang   | 1970 | Azul  | ASDFASD  |
+| Chevrolet | Corvette  | NULL | NULL  | NULL     |
+| Tesla     | S         | NULL | NULL  | NULL     |
+| Tesla     | E         | NULL | NULL  | NULL     |
+| Tesla     | X         | NULL | NULL  | NULL     |
+| Tesla     | Y         | NULL | NULL  | NULL     |
+| Tesla     | Cybertuck | NULL | NULL  | NULL     |
+| Tesla     | S         | NULL | NULL  | NULL     |
+| NULL      | NULL      | NULL | NULL  | NULL     |
++-----------+-----------+------+-------+----------+
+9 rows in set (0.0041 sec)
+ MySQL  localhost  tbd_eva1  SQL > create table prueba(
+                                -> dato varchar(20) not null);
+Query OK, 0 rows affected (0.0409 sec)
+ MySQL  localhost  tbd_eva1  SQL > desc prueba;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| dato  | varchar(20) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+1 row in set (0.0240 sec)
+ MySQL  localhost  tbd_eva1  SQL > insert into prueba
+                                -> value("Hola");
+Query OK, 1 row affected (0.0039 sec)
+ MySQL  localhost  tbd_eva1  SQL > select * from prueba;
++------+
+| dato |
++------+
+| Hola |
++------+
+1 row in set (0.0008 sec)
+ MySQL  localhost  tbd_eva1  SQL > insert into prueba value(null);
+ERROR: 1048 (23000): Column 'dato' cannot be null
+ MySQL  localhost  tbd_eva1  SQL > select * from prueba;
++------+
+| dato |
++------+
+| Hola |
++------+
+1 row in set (0.0008 sec)
+ MySQL  localhost  tbd_eva1  SQL > 
