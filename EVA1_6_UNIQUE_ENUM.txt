@@ -1,0 +1,206 @@
+Last login: Wed Feb 12 11:45:38 on ttys017
+Gerardo@luiss-mac ~ % mysqlsh
+MySQL Shell 9.2.0
+
+Copyright (c) 2016, 2025, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  SQL > \c mc-- root@localhost
+Creating a session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 35
+Server version: 9.1.0 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > use tbd_eva1;
+Default schema set to `tbd_eva1`.
+Fetching global names, object names from `tbd_eva1` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > show tables;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| actor              |
+| ciudad             |
+| country            |
+| persona            |
+| producto           |
+| prueba             |
+| vehiculo           |
++--------------------+
+7 rows in set (0.0042 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > desc producto;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int         | NO   | PRI | NULL    | auto_increment |
+| nombre | varchar(50) | NO   |     | NULL    |                |
+| precio | float(10,2) | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+3 rows in set (0.5407 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into producto(nombre, precio)
+                                         -> values("Tablet", 5000),("Celular", 1000),("Laptop, 10000.58);
+                                         "> 
+                                         "> ");
+ERROR: 1136 (21S01): Column count doesn't match value count at row 3
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into producto(nombre, precio) values("Tablet", 5000),("Celular", 1000),("Laptop", 10000.58);
+Query OK, 3 rows affected (0.0153 sec)
+
+Records: 3  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > select * from producto;
++----+---------+---------+
+| id | nombre  | precio  |
++----+---------+---------+
+|  1 | Tablet  |    5000 |
+|  2 | Celular |    1000 |
+|  3 | Laptop  | 10000.6 |
++----+---------+---------+
+3 rows in set (0.0042 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into producto(precio)
+                                         -> value(5000);
+ERROR: 1364 (HY000): Field 'nombre' doesn't have a default value
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > select * from producto;
++----+---------+---------+
+| id | nombre  | precio  |
++----+---------+---------+
+|  1 | Tablet  |    5000 |
+|  2 | Celular |    1000 |
+|  3 | Laptop  | 10000.6 |
++----+---------+---------+
+3 rows in set (0.0017 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into producto
+                                         -> value(7,"Tacos", 500);
+Query OK, 1 row affected (0.0057 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > select * from producto;
++----+---------+---------+
+| id | nombre  | precio  |
++----+---------+---------+
+|  1 | Tablet  |    5000 |
+|  2 | Celular |    1000 |
+|  3 | Laptop  | 10000.6 |
+|  7 | Tacos   |     500 |
++----+---------+---------+
+4 rows in set (0.0013 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into producto(nombre, precio) values("Tacotes", 500);
+Query OK, 1 row affected (0.0034 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > select * from producto;
++----+---------+---------+
+| id | nombre  | precio  |
++----+---------+---------+
+|  1 | Tablet  |    5000 |
+|  2 | Celular |    1000 |
+|  3 | Laptop  | 10000.6 |
+|  7 | Tacos   |     500 |
+|  8 | Tacotes |     500 |
++----+---------+---------+
+5 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into producto value(7,"Tacos", 500);
+ERROR: 1062 (23000): Duplicate entry '7' for key 'producto.PRIMARY'
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into producto(nombre, precio) values("Tacotes", 500);
+Query OK, 1 row affected (0.0057 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > 
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > 
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > 
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into producto(nombre, precio) values("Tacotes", 500);
+Query OK, 1 row affected (0.0021 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into producto(nombre, precio) values("Tacotes", 500);
+Query OK, 1 row affected (0.0030 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into producto(nombre, precio) values("Tacotes", 500);
+Query OK, 1 row affected (0.0018 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > select * from producto;
++----+---------+---------+
+| id | nombre  | precio  |
++----+---------+---------+
+|  1 | Tablet  |    5000 |
+|  2 | Celular |    1000 |
+|  3 | Laptop  | 10000.6 |
+|  7 | Tacos   |     500 |
+|  8 | Tacotes |     500 |
+|  9 | Tacotes |     500 |
+| 10 | Tacotes |     500 |
+| 11 | Tacotes |     500 |
+| 12 | Tacotes |     500 |
++----+---------+---------+
+9 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > create table cliente(
+                                         -> id int key auto_increment,
+                                         -> nombre varchar(50) not null,
+                                         -> apellidos varchar(50),
+                                         -> rfc varchar(13) not null unique);
+Query OK, 0 rows affected (0.0418 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > desc cliente;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | int         | NO   | PRI | NULL    | auto_increment |
+| nombre    | varchar(50) | NO   |     | NULL    |                |
+| apellidos | varchar(50) | YES  |     | NULL    |                |
+| rfc       | varchar(13) | NO   | UNI | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.0167 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into cliente(nombre, apellidos, rfc) value("Juan", "Perez","ASDF3545KUH");
+Query OK, 1 row affected (0.0065 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into cliente(nombre, apellidos, rfc) value("Juan", "Perez","ASDF3545KUH");
+ERROR: 1062 (23000): Duplicate entry 'ASDF3545KUH' for key 'cliente.rfc'
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > select * from cliente;
++----+--------+-----------+-------------+
+| id | nombre | apellidos | rfc         |
++----+--------+-----------+-------------+
+|  1 | Juan   | Perez     | ASDF3545KUH |
++----+--------+-----------+-------------+
+1 row in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > create table shirts(
+                                         -> id int key auto_increment,
+                                         -> nombre varchar(50),
+                                         -> tama enum("x-small","small","medium","large","x-large"));
+Query OK, 0 rows affected (0.0918 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > desc shirts;
++--------+----------------------------------------------------+------+-----+---------+----------------+
+| Field  | Type                                               | Null | Key | Default | Extra          |
++--------+----------------------------------------------------+------+-----+---------+----------------+
+| id     | int                                                | NO   | PRI | NULL    | auto_increment |
+| nombre | varchar(50)                                        | YES  |     | NULL    |                |
+| tama   | enum('x-small','small','medium','large','x-large') | YES  |     | NULL    |                |
++--------+----------------------------------------------------+------+-----+---------+----------------+
+3 rows in set (0.0204 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into shirts(nombre, tama)
+                                         -> value("Polo", "S")
+                                         -> ;
+ERROR: 1265 (01000): Data truncated for column 'tama' at row 1
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into shirts(nombre, tama) value("otra", "small") ;
+Query OK, 1 row affected (0.0044 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into shirts(nombre, tama) value("otra2", "x-small") ;
+Query OK, 1 row affected (0.0025 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into shirts(nombre, tama) value("otra3", "medium") ;
+Query OK, 1 row affected (0.0025 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > select * from shirts;
++----+--------+---------+
+| id | nombre | tama    |
++----+--------+---------+
+|  1 | otra   | small   |
+|  2 | otra2  | x-small |
+|  3 | otra3  | medium  |
++----+--------+---------+
+3 rows in set (0.0022 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > DROP table cliente;
+Query OK, 0 rows affected (0.0550 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > desc cliente;
+ERROR: 1146 (42S02): Table 'tbd_eva1.cliente' doesn't exist
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > create table cliente( id int key auto_increment, nombre varchar(50) not null, apellidos varchar(50), rfc varchar(13) not null unique, tipo_persona enum("fisica, "moral"), genero enum("h","m"));
+                                         "> ^C
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > create table cliente( id int key auto_increment, nombre varchar(50) not null, apellidos varchar(50), rfc varchar(13) not null unique, tipo_persona enum("fisica", "moral"), genero enum("h","m"));
+Query OK, 0 rows affected (0.0232 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into cliente(nombre, apellidos, rfc, tipo_persona, genero)
+                                         -> values("Luis", "Alvarez", "AAAA000000AAA","fisica","h");
+Query OK, 1 row affected (0.0074 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into cliente(nombre, apellidos, rfc, tipo_persona, genero) values("Daniela", "Acosta", "BBBB000000AAA","fisica","m");
+Query OK, 1 row affected (0.0042 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > select * from cliente;
++----+---------+-----------+---------------+--------------+--------+
+| id | nombre  | apellidos | rfc           | tipo_persona | genero |
++----+---------+-----------+---------------+--------------+--------+
+|  1 | Luis    | Alvarez   | AAAA000000AAA | fisica       | h      |
+|  2 | Daniela | Acosta    | BBBB000000AAA | fisica       | m      |
++----+---------+-----------+---------------+--------------+--------+
+2 rows in set (0.0086 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > 
