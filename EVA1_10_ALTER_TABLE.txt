@@ -1,0 +1,218 @@
+Last login: Tue Feb 25 15:47:37 on ttys000
+mysqlsh
+/Users/Gerardo/.zshrc:export:1: not valid in this context: export HOMEBREW_PREFIX
+Gerardo@luiss-mac ~ % mysqlsh
+MySQL Shell 9.2.0
+
+Copyright (c) 2016, 2025, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  SQL > \connect mc-- root@localhost
+Creating a session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 8
+Server version: 9.1.0 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > use tbd_eva1;
+Default schema set to `tbd_eva1`.
+Fetching global names, object names from `tbd_eva1` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > desc vehiculo;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| marca    | varchar(20) | YES  |     | NULL    |       |
+| modelo   | varchar(30) | YES  |     | NULL    |       |
+| year     | int         | YES  |     | NULL    |       |
+| color    | varchar(20) | YES  |     | NULL    |       |
+| no_serie | varchar(17) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.0064 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > select * from vehiculo;
++-----------+-----------+------+-------+----------+
+| marca     | modelo    | year | color | no_serie |
++-----------+-----------+------+-------+----------+
+| Ford      | Mustang   | 1970 | Azul  | ASDFASD  |
+| Chevrolet | Corvette  | NULL | NULL  | NULL     |
+| Tesla     | S         | NULL | NULL  | NULL     |
+| Tesla     | E         | NULL | NULL  | NULL     |
+| Tesla     | X         | NULL | NULL  | NULL     |
+| Tesla     | Y         | NULL | NULL  | NULL     |
+| Tesla     | Cybertuck | NULL | NULL  | NULL     |
+| Tesla     | S         | NULL | NULL  | NULL     |
+| NULL      | NULL      | NULL | NULL  | NULL     |
++-----------+-----------+------+-------+----------+
+9 rows in set (0.0069 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > alter table vehiculo add id int first;
+Query OK, 0 rows affected (0.0269 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > desc vehiculo;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int         | YES  |     | NULL    |       |
+| marca    | varchar(20) | YES  |     | NULL    |       |
+| modelo   | varchar(30) | YES  |     | NULL    |       |
+| year     | int         | YES  |     | NULL    |       |
+| color    | varchar(20) | YES  |     | NULL    |       |
+| no_serie | varchar(17) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.0038 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > select * from vehiculo;
++------+-----------+-----------+------+-------+----------+
+| id   | marca     | modelo    | year | color | no_serie |
++------+-----------+-----------+------+-------+----------+
+| NULL | Ford      | Mustang   | 1970 | Azul  | ASDFASD  |
+| NULL | Chevrolet | Corvette  | NULL | NULL  | NULL     |
+| NULL | Tesla     | S         | NULL | NULL  | NULL     |
+| NULL | Tesla     | E         | NULL | NULL  | NULL     |
+| NULL | Tesla     | X         | NULL | NULL  | NULL     |
+| NULL | Tesla     | Y         | NULL | NULL  | NULL     |
+| NULL | Tesla     | Cybertuck | NULL | NULL  | NULL     |
+| NULL | Tesla     | S         | NULL | NULL  | NULL     |
+| NULL | NULL      | NULL      | NULL | NULL  | NULL     |
++------+-----------+-----------+------+-------+----------+
+9 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > alter table vehiculo drop id;
+Query OK, 0 rows affected (0.0129 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > select * from vehiculo;
++-----------+-----------+------+-------+----------+
+| marca     | modelo    | year | color | no_serie |
++-----------+-----------+------+-------+----------+
+| Ford      | Mustang   | 1970 | Azul  | ASDFASD  |
+| Chevrolet | Corvette  | NULL | NULL  | NULL     |
+| Tesla     | S         | NULL | NULL  | NULL     |
+| Tesla     | E         | NULL | NULL  | NULL     |
+| Tesla     | X         | NULL | NULL  | NULL     |
+| Tesla     | Y         | NULL | NULL  | NULL     |
+| Tesla     | Cybertuck | NULL | NULL  | NULL     |
+| Tesla     | S         | NULL | NULL  | NULL     |
+| NULL      | NULL      | NULL | NULL  | NULL     |
++-----------+-----------+------+-------+----------+
+9 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > alter table vehiculo add id int key auto_increment first;
+Query OK, 0 rows affected (0.0334 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > select * from vehiculo;
++----+-----------+-----------+------+-------+----------+
+| id | marca     | modelo    | year | color | no_serie |
++----+-----------+-----------+------+-------+----------+
+|  1 | Ford      | Mustang   | 1970 | Azul  | ASDFASD  |
+|  2 | Chevrolet | Corvette  | NULL | NULL  | NULL     |
+|  3 | Tesla     | S         | NULL | NULL  | NULL     |
+|  4 | Tesla     | E         | NULL | NULL  | NULL     |
+|  5 | Tesla     | X         | NULL | NULL  | NULL     |
+|  6 | Tesla     | Y         | NULL | NULL  | NULL     |
+|  7 | Tesla     | Cybertuck | NULL | NULL  | NULL     |
+|  8 | Tesla     | S         | NULL | NULL  | NULL     |
+|  9 | NULL      | NULL      | NULL | NULL  | NULL     |
++----+-----------+-----------+------+-------+----------+
+9 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > alter table vehiculo rename column id to id_vehiculo;
+Query OK, 0 rows affected (0.0172 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > desc vehiculo;
++-------------+-------------+------+-----+--CREATE DATABASE Northwind;^C
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > desc vehiculo;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id_vehiculo | int         | NO   | PRI | NULL    | auto_increment |
+| marca       | varchar(20) | YES  |     | NULL    |                |
+| modelo      | varchar(30) | YES  |     | NULL    |                |
+| year        | int         | YES  |     | NULL    |                |
+| color       | varchar(20) | YES  |     | NULL    |                |
+| no_serie    | varchar(17) | YES  |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.0697 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > alter table vehiculo add no_puertas int not null;
+Query OK, 0 rows affected (0.0354 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > desc vehiculo;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id_vehiculo | int         | NO   | PRI | NULL    | auto_increment |
+| marca       | varchar(20) | YES  |     | NULL    |                |
+| modelo      | varchar(30) | YES  |     | NULL    |                |
+| year        | int         | YES  |     | NULL    |                |
+| color       | varchar(20) | YES  |     | NULL    |                |
+| no_serie    | varchar(17) | YES  |     | NULL    |                |
+| no_puertas  | int         | NO   |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+7 rows in set (0.0035 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > select * from vehiculo;
++-------------+-----------+-----------+------+-------+----------+------------+
+| id_vehiculo | marca     | modelo    | year | color | no_serie | no_puertas |
++-------------+-----------+-----------+------+-------+----------+------------+
+|           1 | Ford      | Mustang   | 1970 | Azul  | ASDFASD  |          0 |
+|           2 | Chevrolet | Corvette  | NULL | NULL  | NULL     |          0 |
+|           3 | Tesla     | S         | NULL | NULL  | NULL     |          0 |
+|           4 | Tesla     | E         | NULL | NULL  | NULL     |          0 |
+|           5 | Tesla     | X         | NULL | NULL  | NULL     |          0 |
+|           6 | Tesla     | Y         | NULL | NULL  | NULL     |          0 |
+|           7 | Tesla     | Cybertuck | NULL | NULL  | NULL     |          0 |
+|           8 | Tesla     | S         | NULL | NULL  | NULL     |          0 |
+|           9 | NULL      | NULL      | NULL | NULL  | NULL     |          0 |
++-------------+-----------+-----------+------+-------+----------+------------+
+9 rows in set (0.0022 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > alter table vehiculo change no_puertas puertas varchar(50) not null;
+Query OK, 9 rows affected (0.0249 sec)
+
+Records: 9  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > desc vehiculo;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id_vehiculo | int         | NO   | PRI | NULL    | auto_increment |
+| marca       | varchar(20) | YES  |     | NULL    |                |
+| modelo      | varchar(30) | YES  |     | NULL    |                |
+| year        | int         | YES  |     | NULL    |                |
+| color       | varchar(20) | YES  |     | NULL    |                |
+| no_serie    | varchar(17) | YES  |     | NULL    |                |
+| puertas     | varchar(50) | NO   |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+7 rows in set (0.0064 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > select * from vehiculo;
++-------------+-----------+-----------+------+-------+----------+---------+
+| id_vehiculo | marca     | modelo    | year | color | no_serie | puertas |
++-------------+-----------+-----------+------+-------+----------+---------+
+|           1 | Ford      | Mustang   | 1970 | Azul  | ASDFASD  | 0       |
+|           2 | Chevrolet | Corvette  | NULL | NULL  | NULL     | 0       |
+|           3 | Tesla     | S         | NULL | NULL  | NULL     | 0       |
+|           4 | Tesla     | E         | NULL | NULL  | NULL     | 0       |
+|           5 | Tesla     | X         | NULL | NULL  | NULL     | 0       |
+|           6 | Tesla     | Y         | NULL | NULL  | NULL     | 0       |
+|           7 | Tesla     | Cybertuck | NULL | NULL  | NULL     | 0       |
+|           8 | Tesla     | S         | NULL | NULL  | NULL     | 0       |
+|           9 | NULL      | NULL      | NULL | NULL  | NULL     | 0       |
++-------------+-----------+-----------+------+-------+----------+---------+
+9 rows in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > create table datos(
+                                         -> id int key auto_increment,
+                                         -> valor int check(valor>=1000));
+Query OK, 0 rows affected (0.0180 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into datos (valor)
+                                         -> values (1000), (2000), (3000);
+Query OK, 3 rows affected (0.0081 sec)
+
+Records: 3  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > select * from datos;
++----+-------+
+| id | valor |
++----+-------+
+|  1 |  1000 |
+|  2 |  2000 |
+|  3 |  3000 |
++----+-------+
+3 rows in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into datos (valor) value (5);
+ERROR: 3819 (HY000): Check constraint 'datos_chk_1' is violated.
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > 
